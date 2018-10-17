@@ -1,49 +1,44 @@
 import { INavLinkGroup, Nav } from "office-ui-fabric-react/lib/Nav";
 import * as React from "react";
 import "./sidebar.scss";
+import { withRouter } from 'react-router-dom';
 
-export class SideBar extends React.Component<ISideBarProps, any> {
-    constructor(props: ISideBarProps) {
-        super(props);
-        this.state = {
-            collapsed: defaultCollapsed,
-            expanded: defaultExpanded,
-            groups: defaultGroups,
-        };
-    }
-
-    public render() {
+export const SideBar = withRouter(({history}) => {
         return (
             <div className="sidebar">
-                <Nav groups={this.state.groups}
-                    expandedStateText={this.state.expanded}
-                    collapsedStateText={this.state.collapsed}
+                <Nav
+                    onLinkClick={(event, element) => {
+                        event.preventDefault();
+                        history.push(element.url);
+                    }}
+                    groups={defaultGroups}
                 />
             </div>
         );
     }
-}
+)
 
 export interface ISideBarProps {
     groups?: INavLinkGroup;
     expanded?: string;
     collapsed?: string;
     className: string;
+    // withRouter<history>: any;
 }
 
 // tslint:disable
 const defaultGroups = [{
     links: [{
         name: 'Home',
-        url: 'http://example.com',
+        url: '/',
         links: [{
             icon: 'ActivateOrders',
             name: 'Aktywność',
             url: 'http://msn.com',
         }, {
-            icon: 'News',
-            name: 'Nowości',
-            url: 'http://msn.com',
+            icon: 'Write Post',
+            name: '/post',
+            url: '/post',
         }],
         isExpanded: true,
     }, {
@@ -59,6 +54,10 @@ const defaultGroups = [{
         icon: 'DietPlanNotebook',
         name: 'Notatki',
         url: 'http://msn.com',
+    }, {
+        icon: 'O nas',
+        name: 'O nas',
+        url: '/about',
     }]
 }]
 
