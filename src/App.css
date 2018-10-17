@@ -1,0 +1,30 @@
+.app {
+  /* background-color: black; */
+}
+
+.app .body {
+  width: 1012px !important;
+  margin: 0 auto;
+  position: relative;
+}
+
+.app .body .content {
+  /* background-color: green; */
+}
+
+.app .body .sidebar {
+  /* background-color: yellow; */
+}
+
+.app .footer {
+  background-color: black;
+}
+
+.app{
+  min-height: 100vh;
+}
+
+body {
+  background-color: #e9ebee;
+  margin: 0;
+}
