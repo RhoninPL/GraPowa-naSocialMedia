@@ -1,0 +1,32 @@
+.input-group-text {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #FFF;
+}
+
+.answer {
+  width: 100%;
+}
+
+form {
+  padding: 10px;
+  background-color: #4267b2;
+  border-radius: 10px;
+}
+
+textarea.answer {
+  white-space: normal;
+  width: auto;
+}
+
+.dates > input {
+  display: inline;
+  width: auto;
+  margin-right: 10px;
+}
+
+.option {
+  background-color: #EEE;
+  padding: 5px;
+  border-radius: 5px;
+}

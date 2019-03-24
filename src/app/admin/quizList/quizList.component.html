@@ -1,0 +1,5 @@
+<app-new-question-form></app-new-question-form>
+<div class="form-group question" *ngFor="let question of questions" style="border-bottom: 2px solid #e5e5e5;">
+  <app-question-form [question]="question"></app-question-form>
+  <button type="button" class="btn btn-danger" (click)="deletePost(question)" style="width: 100%; margin-bottom: 10px; margin-top: 10px;">Usun Post</button>
+</div>

@@ -1,0 +1,29 @@
+<form [formGroup]="questionForm" (ngSubmit)="save()" class="quiz-form">
+  <div class="text">
+    Pytanie:
+    <input class="input-group-text" type="text" value="{{question.question}}" formControlName="question" />
+    Podpowiedź:
+    <input class="input-group-text" type="text" value="{{question.hint}}" formControlName="hint" />
+  </div>
+  Odpowiedzi:
+  <button type="button" (click)="addAnswer()" class="btn btn-dark">Dodaj odpowiedź</button>
+  <div class="option" formArrayName="contents" *ngFor="let content of contents.controls; let i=index">
+    <div [formGroupName]="i">
+      <input class="input-group-text answer content" type="text" formControlName="content" value="{{contents.controls[i].controls.content.value}}" />
+      <input class="input-group-text answer" type="text" formControlName="quality" value="{{contents.controls[i].controls.quality.value}}" />
+      <button type="button" (click)="removeContent(i)" class="btn btn-dark">Usun</button>
+    </div>
+  </div>
+  Daty:
+  <button type="button" (click)="addDate()" class="btn btn-dark">Dodaj datę</button>
+  <div class="option dates" formArrayName="dates" *ngFor="let date of dates.controls; let i=index">
+    <div [formGroupName]="i">
+      <input class="input-group-text answer date" type="text" formControlName="date" value="{{dates.controls[i].controls.date.value}}" />
+      <input class="input-group-text answer" type="text" formControlName="quality" value="{{dates.controls[i].controls.quality.value}}" />
+      <button type="button" (click)="removeDate(i)" class="btn btn-dark">Usun</button>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Aktualizuj</button>
+  </div>
+</form>

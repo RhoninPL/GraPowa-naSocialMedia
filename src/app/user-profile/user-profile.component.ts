@@ -10,7 +10,7 @@ import { User } from '../models/user';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  private userForm: FormGroup;
+  public userForm: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder,
     private readonly userProfileService: ProfileService) {

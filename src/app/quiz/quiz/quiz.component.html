@@ -1,0 +1,62 @@
+<form [formGroup]="questionForm" (ngSubmit)="save(content)" class="quiz-form">
+  <div class="form-group question" *ngFor="let question of questions">
+    <div class="text">
+      {{question.question}}
+    </div>
+    <button type="button" style="margin-bottom: 10px;" (click)="showHint(question)" class="btn btn-dark">Pokaż podpowiedź</button>
+    <div *ngIf="show" style="margin-bottom: 10px;">{{question.hint}}</div>
+    <label class="answers custom-control custom-radio custom-control-inline" *ngFor="let content of question.contents; let i=index">
+      <span [innerHTML]="content.content | keepHtml"></span>
+      <input type="radio" [formControlName]="question.id.toString()" [value]="i" required>
+      <span class="answer-check"></span>
+    </label>
+    <div class="form-control-lg glyphicon-time">O godzinie:</div>
+    <label class="answers custom-control custom-radio custom-control-inline" *ngFor="let date of question.dates; let i=index">
+      {{date.date}}
+      <input type="radio" [formControlName]="question.id.toString() + 'time'" [value]="i" required>
+      <span class="answer-check"></span>
+    </label>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Finished</button>
+  </div>
+</form>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Your score:</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ratio | number}}
+    <svg enable-background="new 0 0 512 512" height="32px" id="Like_3_" version="1.1" viewBox="0 0 512 512" width="32px"
+      xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="bg_26_">
+        <g>
+          <polygon fill="#3B579D" points="0,0 0,512 355,512 512,354 512,0   " />
+        </g>
+      </g>
+      <g id="Like_1_">
+        <g>
+          <path clip-rule="evenodd" d="M174.729,256.849c-5.466,0-31.667,0-36.845,0    c-11.507,0-12.131,11.56-11.843,14.427s9.952,94.801,10.527,99.675s2.637,14.427,11.843,14.427c8.343,0,23.404,0,32.897,0    c9.494,0,10.527-9.102,10.527-13.115s0-93.818,0-100.986S189.977,256.849,174.729,256.849z M378.695,276.521    c17.01-30.964-11.892-47.71-17.106-47.215c-3.478-0.99-47.537,0-50.005,0c-5.553,0-18.99,1.885-14.475-10.492    c1.129-4.275,23.39-40.636,18.422-64.265c-4.741-22.053-21.071-32.406-34.213-28.854c-6.813,1.843-1.563,16.478-10.527,38.034    c-10.387,31.505-21.748,26.466-40.793,57.707c-19.045,31.241-13.317,45.903-35.529,45.903c0,0-0.188,108.855,0,108.855    c31.994,0,58.078,11.804,67.111,11.804c9.034,0,49.251,0,63.164,0c17.306,0,27.129-7.832,32.897-14.427s8.913-16.843,7.896-23.607    c6.447-2.367,20.198-17.997,10.527-40.657C376.742,309.309,389.058,294.678,378.695,276.521z"
+            fill="#FFFFFF" fill-rule="evenodd" />
+        </g>
+      </g>
+      <g id="Clip_Light_26_">
+        <g>
+          <polygon fill="#5B7BC9" points="355,354 355,512.02 512,354   " />
+        </g>
+      </g>
+      <g id="Shadow_Clip_26_" opacity="0.102">
+        <g>
+          <polygon points="198,512 355,512 355,353.98   " />
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Ok</button>
+  </div>
+</ng-template>

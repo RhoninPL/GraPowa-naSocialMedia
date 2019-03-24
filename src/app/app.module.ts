@@ -1,5 +1,5 @@
 import { ProfileService } from './profile.service';
-import { AppRoutingModule } from './app.routing.module/app.routing.module';
+import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,7 +25,7 @@ import { AboutComponent } from './about/about.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [ProfileService],
   bootstrap: [AppComponent]

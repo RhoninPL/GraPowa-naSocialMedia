@@ -1,0 +1,39 @@
+<form [formGroup]="questionForm" class="new-question" (ngSubmit)="save()" class="quiz-form">
+  Nowe pytanie:
+  <div class="text">
+    <input class="input-group-text" type="text" formControlName="question" />
+    Podpowiedź:
+    <input class="input-group-text" type="text" formControlName="hint" />
+  </div>
+  <div class="option" style="margin-bottom: 10px;">
+    <textarea rows="10" cols="100" class="input-group-text answer" type="text" #content style="resize:none" wrap="hard"></textarea>
+    <input class="input-group-text answer" type="text" #quality />
+  </div>
+  <button type="button" class="btn btn-default" (click)="addContent(content.value, quality.value)" style="margin-right: 20px;">Dodaj
+    nową odpowiedź</button>
+  <button type="button" class="btn btn-default" (click)="addDate(content.value, quality.value)">Dodaj nową datę</button>
+  <div class="answers">
+    Aby zmienić konkretną odpowiedź lub datę, należy wypełnić pola powyżej, następnie przy konkretnej opcji wybrać
+    "Zmien".
+    <div>
+      Odpowiedzi:
+      <div *ngFor="let content of contents">
+        Tresc: <div>{{content.content}}</div> Waga:{{content.quality}}
+        <button type="button" class="btn btn-dark" (click)="changeContent(content.content, content.quality)">Zmien</button>
+        <button type="button" class="btn btn-dark" (click)="removeContent(content)">Usun</button>
+      </div>
+    </div>
+    <hr />
+    <div>
+      Daty:
+      <div *ngFor="let date of dates">
+        Tresc: <div>{{date.date}}</div> Waga:{{date.quality}}
+        <button type="button" class="btn btn-dark" (click)="changeDates(content.content, content.quality)">Zmien</button>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+  </div>
+</form>
+<hr />

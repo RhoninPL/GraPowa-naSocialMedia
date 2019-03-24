@@ -1,8 +1,11 @@
-import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { AboutComponent } from '../about/about.component';
+import { AdminModule } from './admin/admin.module';
+import { QuizModule } from './quiz/quiz.module';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AboutComponent } from './about/about.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreatePostComponent } from '../create-post/create-post.component';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 
 const appRoutes: Routes = [
   {
@@ -21,18 +24,15 @@ const appRoutes: Routes = [
   {
     path: 'createPost',
     component: CreatePostComponent
-  },
-  {
-    path: '**',
-    component: AboutComponent
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
-  ],
-  declarations: [
+    QuizModule,
+    AdminModule,
+    RouterModule.forRoot(appRoutes),
+    // PageNotFoundModule,
   ],
   exports: [
     RouterModule
